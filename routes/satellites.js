@@ -36,7 +36,7 @@ router.post("/findSatbyid", async (req, res) => {
 router.post("/satLocation", async (req, res) => {
   try {
     const { norad } = req.body;
-    const browser = await puppeteer.launch({ headless: false });
+    const browser = await puppeteer.launch({ headless: true });
     const page = await browser.newPage();
     await page.goto(`https://www.n2yo.com/?s=${norad}`, {
     // await page.goto(`https://www.n2yo.com/?s=56147`, {
@@ -89,10 +89,10 @@ router.post("/satLocation", async (req, res) => {
 
     // await page.close()
 
+    await browser.close()
     res.status(200).json(data)
     
   });
-  // browser.close()
   } catch (error) {
     res.status(500).json({ message: "Server Error", error: error.message });
   }

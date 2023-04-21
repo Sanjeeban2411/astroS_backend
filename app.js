@@ -2,8 +2,10 @@ const express = require('express');
 // require("./mongo/db")
 const user = require("./routes/user")
 const satellites = require("./routes/satellites");
+var cors = require('cors');
 
 const app = express();
+app.use(cors());
 
 app.use(express.json());
 
