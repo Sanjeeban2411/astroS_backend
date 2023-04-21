@@ -15,16 +15,24 @@ router.post("/signup", async (req, res)=>{
     }
 });
 
-router.get("/login",async(req,res)=>{
+router.post("/login",async(req,res)=>{
     try {
-        const {username,password} = req.body;
-        const user = await userDetails.findOne({username:username});
-        // console.log(user);
-        if(user.password == password){
-            res.status(200).json({data: user});
+        const username = req.body.username;
+        const password = req.body.password;
+        console.log(req.body)
+        const user = await userDetails.findOne({ username: username });
+        console.log(user)
+        if (!user) {
+            res.status(200).json({ data: "No User Found" });
+        } else {
+            if (user.password == password) {
+                res.status(200).json({ data: user });
+            } else {
+                res.status(200).json({ data: "Incorrect password" });
+            }
         }
     } catch (error) {
-        res.status(400).send(error)
+        res.status(400).send(error);
     }
 
 })

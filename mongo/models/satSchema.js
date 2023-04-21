@@ -5,22 +5,22 @@ const SatSchema = new mongoose.Schema({
         type:String
     },
     norad:{
-        type:String
+        type:Number
     },
     agency:{
         type:String
     },
-    user_name:{
+    username:{
         type:String
     },
     launch_date:{
         type:String
     },
     weight:{
-        type:String
+        type:Number
     },
     period:{
-        type:String
+        type:Number
     }
 })
 
