@@ -19,8 +19,8 @@ router.get("/findSats", async (req, res) => {
 
 router.post("/findSatbyid", async (req, res) => {
   try {
-    const  norad  = req.body.norad;
-    const foundSatellites = await satDetails.findOne({norad: norad});
+    const { norad } = req.body;
+    const foundSatellites = await satDetails.findOne({ norad: norad });
     if (foundSatellites) {
       res
         .status(200)
