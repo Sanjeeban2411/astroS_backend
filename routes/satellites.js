@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const puppeteer = require('puppeteer')
-const satDetails = require("../models/satSchema");
+const satDetails = require("../mongo/models/satSchema");
 
 router.get("/findSats", async (req, res) => {
   try {
@@ -20,7 +20,8 @@ router.get("/findSats", async (req, res) => {
 router.post("/findSatbyid", async (req, res) => {
   try {
     const { norad } = req.body;
-    const foundSatellites = await satDetails.findOne({ norad: norad });
+    const foundSatellites = await satDetails.find({ norad: norad });
+    console.log(foundSatellites);
     if (foundSatellites) {
       res
         .status(200)
